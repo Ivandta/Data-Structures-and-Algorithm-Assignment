@@ -4,17 +4,14 @@ public class Main {
 
         LinkedList list = new LinkedList();
 
-        // Add data
         list.addFirst(10);
         list.addFirst(20);
         list.addLast(30);
         list.addLast(40);
 
-        // Display the Linked List
         System.out.println("Linked List:");
         list.display();
 
-        // Display the number of nodes
         System.out.println("Number of nodes: " + list.size());
 
         // Search for data

@@ -1,6 +1,5 @@
 class LinkedList {
 
-    // Node stores data and a reference to the next node
     class Node {
         int data;
         Node next;
@@ -13,7 +12,6 @@ class LinkedList {
 
     Node head;
 
-    // Add a new node at the beginning
     public void addFirst(int data) {
         Node newNode = new Node(data);
 
@@ -21,7 +19,6 @@ class LinkedList {
         head = newNode;
     }
 
-    // Add a new node at the end
     public void addLast(int data) {
         Node newNode = new Node(data);
 
@@ -39,7 +36,6 @@ class LinkedList {
         current.next = newNode;
     }
 
-    // Display all nodes
     public void display() {
         Node current = head;
 
@@ -51,7 +47,6 @@ class LinkedList {
         System.out.println("null");
     }
 
-    // Remove the first node
     public void removeFirst() {
         if (head == null) {
             System.out.println("List is empty");
@@ -61,7 +56,6 @@ class LinkedList {
         head = head.next;
     }
 
-    // Remove the last node
     public void removeLast() {
         if (head == null) {
             System.out.println("List is empty");
@@ -82,7 +76,6 @@ class LinkedList {
         current.next = null;
     }
 
-    // Search for a specific value
     public boolean search(int data) {
         Node current = head;
 
@@ -97,7 +90,6 @@ class LinkedList {
         return false;
     }
 
-    // Count the number of nodes
     public int size() {
         int count = 0;
         Node current = head;
