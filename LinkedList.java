@@ -1,104 +1,78 @@
+class Node {
+    Item data;
+    Node next;
+
+    Node(Item data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
 class LinkedList {
+    private Node head = null;
+    private Node tail = null;
 
-    class Node {
-        int data;
-        Node next;
-
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-
-    Node head;
-
-    public void addFirst(int data) {
+    void add(Item data) {
         Node newNode = new Node(data);
-
-        newNode.next = head;
-        head = newNode;
+        if (head == null) {
+            head = tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
     }
 
-    public void addLast(int data) {
-        Node newNode = new Node(data);
-
+    void display() {
         if (head == null) {
-            head = newNode;
+            System.out.println("Inventory is empty.");
             return;
         }
-
         Node current = head;
-
-        while (current.next != null) {
-            current = current.next;
-        }
-
-        current.next = newNode;
-    }
-
-    public void display() {
-        Node current = head;
-
         while (current != null) {
-            System.out.print(current.data + " -> ");
+            System.out.println(current.data.toString());
             current = current.next;
         }
-
-        System.out.println("null");
     }
 
-    public void removeFirst() {
-        if (head == null) {
-            System.out.println("List is empty");
-            return;
-        }
-
-        head = head.next;
-    }
-
-    public void removeLast() {
-        if (head == null) {
-            System.out.println("List is empty");
-            return;
-        }
-
-        if (head.next == null) {
-            head = null;
-            return;
-        }
-
+    void search(Item key) {
         Node current = head;
-
-        while (current.next.next != null) {
-            current = current.next;
-        }
-
-        current.next = null;
-    }
-
-    public boolean search(int data) {
-        Node current = head;
-
         while (current != null) {
-            if (current.data == data) {
-                return true;
+            if (current.data.equals(key)) {
+                System.out.println(key.getName() + " is found in the inventory.");
+                return;
             }
-
             current = current.next;
         }
-
-        return false;
+        System.out.println(key.getName() + " is not found.");
     }
 
-    public int size() {
-        int count = 0;
-        Node current = head;
-
-        while (current != null) {
-            count++;
-            current = current.next;
+    void delete(Item key) {
+        if (head == null) {
+            System.out.println("Inventory is empty, nothing to delete.");
+            return;
         }
 
-        return count;
+        if (head.data.equals(key)) {
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }
+            System.out.println(key.getName() + " has been deleted.");
+            return;
+        }
+
+        Node current = head;
+        while (current.next != null) {
+            if (current.next.data.equals(key)) {
+                current.next = current.next.next;
+                if (current.next == null) {
+                    tail = current; 
+                }
+                System.out.println(key.getName() + " has been deleted.");
+                return;
+            }
+            current = current.next;
+        }
+        System.out.println(key.getName() + " was not found for deletion.");
     }
 }
